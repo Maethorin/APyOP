@@ -1,0 +1,7 @@
+*.pyc
+*.db
+*local_settings.py
+.idea/
+li_versionador.egg-info
+dist/
+build/
