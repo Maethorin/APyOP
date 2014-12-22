@@ -113,7 +113,7 @@ def set_music_as_played(music_id):
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-d", "--dir", help="Folder path with the mp3 files")
-parser.add_argument("-a", "--all", help="Play all folder and delete play list in database", action="store_true")
+parser.add_argument("-a", "--all", help="Play all folder and delete play list in database'", action="store_true")
 
 if __name__ == "__main__":
     args = parser.parse_args()
