@@ -59,7 +59,7 @@ def play_list_db():
         if con:
             con.rollback()
             con.close()
-        print "{}{}{}".format(Colors.BFAIL, ex, Colors.ENDC)
+        print "{}CONNECTION: {}{}".format(Colors.BFAIL, ex, Colors.ENDC)
         return None
 
 
@@ -70,11 +70,11 @@ def create_play_list(mp3_files_list):
         inserts = []
         cursor.executescript("DELETE FROM musics;")
         for entry in mp3_files_list:
-            inserts.append("INSERT INTO musics VALUES ({}, 0);".format(entry))
+            inserts.append("INSERT INTO musics(path, played) VALUES ('{}', 0);".format(entry))
         cursor.executescript("\n".join(inserts))
         con.commit()
     except sqlite3.Error, ex:
-        print "{}{}{}".format(Colors.BFAIL, ex, Colors.ENDC)
+        print "{}CREATE PLAYLIST: {}{}".format(Colors.BFAIL, ex, Colors.ENDC)
         con.rollback()
     finally:
         con.close()
@@ -90,7 +90,7 @@ def get_playable_list():
             return cursor.fetchall()
     except sqlite3.Error, ex:
         con.rollback()
-        print "{}{}{}".format(Colors.BFAIL, ex, Colors.ENDC)
+        print "{}GET PLAYLIST: {}{}".format(Colors.BFAIL, ex, Colors.ENDC)
         return []
     finally:
         con.close()
@@ -105,7 +105,7 @@ def set_music_as_played(music_id):
             con.commit()
     except sqlite3.Error, ex:
         con.rollback()
-        print "{}{}{}".format(Colors.BFAIL, ex, Colors.ENDC)
+        print "{}UPDATE MUSIC: {}{}".format(Colors.BFAIL, ex, Colors.ENDC)
     finally:
         con.close()
 
