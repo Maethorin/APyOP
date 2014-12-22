@@ -58,11 +58,9 @@ def play_list_db():
     except sqlite3.Error, ex:
         if con:
             con.rollback()
+            con.close()
         print "{}{}{}".format(Colors.BFAIL, ex, Colors.ENDC)
         return None
-    finally:
-        if con:
-            con.close()
 
 
 def create_play_list(mp3_files_list):
