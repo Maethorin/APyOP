@@ -71,7 +71,6 @@ def create_play_list(mp3_files_list):
         cursor.executescript("DELETE FROM musics;")
         for entry in mp3_files_list:
             insert = "INSERT INTO musics(path, played) VALUES ('{}', 0);".format(entry)
-            print "INSERT: {}".format(insert)
             inserts.append(insert)
         cursor.executescript('\n'.join(inserts))
         con.commit()
