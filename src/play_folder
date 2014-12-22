@@ -76,8 +76,8 @@ def create_play_list(mp3_files_list):
         cursor.executescript("\n".join(inserts))
         con.commit()
     except sqlite3.Error, ex:
-        con.rollback()
         print "{}{}{}".format(Colors.BFAIL, ex, Colors.ENDC)
+        con.rollback()
     finally:
         con.close()
 
